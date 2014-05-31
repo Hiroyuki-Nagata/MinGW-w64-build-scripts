@@ -37,13 +37,13 @@ else
 
   echo "---> GMP"
   mkdir -p gmp
-  cp $SRC_DIR/gmp/COPYING gmp/COPYING
-  cp $SRC_DIR/gmp/COPYING.LIB gmp/COPYING.LIB
+  cp $SRC_DIR/gmp-*/COPYING gmp/COPYING
+  cp $SRC_DIR/gmp-*/COPYING.LIB gmp/COPYING.LIB
 
   echo "---> libiconv"
   mkdir -p libiconv
-  cp $SRC_DIR/libiconv/COPYING libiconv/COPYING
-  cp $SRC_DIR/libiconv/COPYING.LIB libiconv/COPYING.LIB
+  cp $SRC_DIR/libiconv-*/COPYING libiconv/COPYING
+  cp $SRC_DIR/libiconv-*/COPYING.LIB libiconv/COPYING.LIB
 
   echo "---> mingw-w64"
   mkdir -p mingw-w64
@@ -58,20 +58,20 @@ else
 
   echo "---> MPC"
   mkdir -p mpc
-  cp $SRC_DIR/mpc/COPYING.LESSER mpc/COPYING.LESSER
+  cp $SRC_DIR/mpc-*/COPYING.LESSER mpc/COPYING.LESSER
 
   echo "---> MPFR"
   mkdir -p mpfr
-  cp $SRC_DIR/mpfr/COPYING mpfr/COPYING
-  cp $SRC_DIR/mpfr/COPYING.LESSER mpfr/COPYING.LESSER
+  cp $SRC_DIR/mpfr-*/COPYING mpfr/COPYING
+  cp $SRC_DIR/mpfr-*/COPYING.LESSER mpfr/COPYING.LESSER
     
   echo "---> PPL"
   mkdir -p ppl
-  cp $SRC_DIR/ppl/COPYING ppl/COPYING
+  cp $SRC_DIR/ppl-*/COPYING ppl/COPYING
 
   echo "---> Winpthreads"
   mkdir -p winpthreads
-  cp $SRC_DIR/winpthreads/COPYING winpthreads/COPYING
+  cp $SRC_DIR/mingw-w64/mingw-w64-libraries/winpthreads/COPYING winpthreads/COPYING
 
   if [ "$HOST" != "x86_64-w64-mingw32" ] && [ "$HOST" != "i686-w64-mingw32" ]
   then
@@ -79,15 +79,15 @@ else
   else
     echo "---> Make"
     mkdir -p make
-    cp $SRC_DIR/make/COPYING make/COPYING
+    cp $SRC_DIR/make-*/COPYING make/COPYING
     
     echo "---> Expat"
     mkdir -p expat
-    cp $SRC_DIR/expat/COPYING expat/COPYING
+    cp $SRC_DIR/expat-*/COPYING expat/COPYING
 
     echo "---> Python"
     mkdir -p python
-    cp $BUILD_DIR/python/LICENSE.txt python/LICENSE.txt
+    cp $BUILD_DIR/python-*/LICENSE.txt python/LICENSE.txt
   fi
 
   mkdir -p $PREFIX/licenses

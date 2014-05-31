@@ -30,5 +30,7 @@ ltmain.sh
 missing
 stamp-h1
 aclocal.m4
-# ignore under src directory
+# ignore under package, prereq and src directory
+*mingw*/*
 src/*
+prereq/*

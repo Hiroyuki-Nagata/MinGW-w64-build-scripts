@@ -8,7 +8,8 @@ then
   echo "--> 64-bit winpthreads already configured"
 else
   echo "--> Configuring 64-bit build"
-  sh $SRC_DIR/winpthreads/configure --host=x86_64-w64-mingw32 --build=$BUILD \
+  sh $SRC_DIR/mingw-w64/mingw-w64-libraries/winpthreads/configure            \
+                                    --host=x86_64-w64-mingw32 --build=$BUILD \
                                     --prefix=$PREFIX/$TARGET \
                                     --enable-shared --enable-static \
                                     > $LOG_DIR/winpthreads64_configure.log 2>&1 || exit 1
