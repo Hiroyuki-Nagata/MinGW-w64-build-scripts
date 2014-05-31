@@ -99,7 +99,9 @@ function vc()
 vc "binutils"         "git" "git://sourceware.org/git/binutils.git" || exit 1
 vc "gdb"              "git" "git://sourceware.org/git/gdb.git" || exit 1
 
-vc "mingw-w64"        "svn" "https://mingw-w64.svn.sourceforge.net/svnroot/mingw-w64" || exit 1
+# svn checkout http://svn.code.sf.net/p/mingw-w64/code/trunk mingw-w64-code
+#vc "mingw-w64"        "svn" "https://mingw-w64.svn.sourceforge.net/svnroot/mingw-w64" || exit 1
+vc "mingw-w64"        "svn" "http://svn.code.sf.net/p/mingw-w64/code/trunk" || exit 1
 vc "gcc"              "git" "git://gcc.gnu.org/git/gcc.git" || exit 1
 vc "LLVM"             "svn" "http://llvm.org/svn/llvm-project/llvm/trunk" || exit 1
 vc "LLVM/tools/clang" "svn" "http://llvm.org/svn/llvm-project/cfe/trunk" || exit 1

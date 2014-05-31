@@ -6,3 +6,13 @@ export RUBENVB_GCC_VERSION="4.8pre"
 export RUBENVB_CLANG_VERSION="3.2pre"
 
 export RUBENVB_PACKAGE_OPTIONS="--with-pkgversion=rubenvb-$RUBENVB_GCC_VERSION --with-bugurl=mingw-w64-public@lists.sourceforge.net"
+
+# this is hiroyuki nagata's library version setting
+export LIBICONV_VERSION="1.14"
+export EXPAT_VERSION="2.1.0"
+export GMP_VERSION="4.3.2"
+export MPFR_VERSION="3.1.2"
+export MPC_VERSION="1.0.1"
+export PPL_VERSION="1.0"
+export CLOOG_VERSION="0.18.1"
+export MAKE_VERSION="4.0"
