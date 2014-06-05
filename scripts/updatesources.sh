@@ -39,7 +39,7 @@ update "mpc"        "$MPC_VERSION"      ".tar.gz"  "http://www.multiprecision.or
 update "ppl"        "$PPL_VERSION"      ".tar.bz2" "ftp://ftp.cs.unipr.it/pub/ppl/releases/$PPL_VERSION" || exit 1
 update "cloog"      "$CLOOG_VERSION"    ".tar.gz"  "http://www.bastoul.net/cloog/pages/download/count.php3?url=." || exit 1
 update "make"       "$MAKE_VERSION"     ".tar.bz2" "http://ftp.gnu.org/gnu/make" || exit 1
-update "isl"        "$ISL_VERSION"      ".tar.bz2" "http://isl.gforge.inria.fr/$ISL_VERSION" || exit 1
+update "isl"        "$ISL_VERSION"      ".tar.bz2" "http://isl.gforge.inria.fr/" || exit 1
 
 echo "-> Removing temporary downloads"
 rm -rf "$DOWNLOADS_DIR"
