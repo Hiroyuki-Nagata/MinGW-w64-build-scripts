@@ -101,16 +101,20 @@ vc:
 	@$(foreach x, $(VLIST), \
 	echo "-> $(word $(x),$(VCSS)), from version control"; \
 	if test ! -d "$(top_builddir)/src/@TARGET_GCC_VER@/$(word $(x),$(VCSS))"; then \
-	   echo "-> $(word $(x),$(VCSS))";                              \
-	   case $(word $(x),$(TYPS)) in                                 \
-	   "svn")                                                       \
-	   svn co "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
-	   ;;                                                           \
-	   "git")                                                       \
-	   git clone --depth=1 "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
-	   ;; 									     \
-	   esac									     \
-	fi; \
+	   echo "-> $(word $(x),$(VCSS))";                         \
+	   if test "$(word $(x),$(TYPS))" = "git"; then            \
+	      echo "--> cd $(top_builddir)/src/@TARGET_GCC_VER@/"; \
+	      cd $(top_builddir)/src/@TARGET_GCC_VER@/;            \
+	      git clone --depth=1 $(word $(x),$(VCURLS)) > /dev/null 2>&1 || exit 1; \
+	      cd -; \
+	   fi;      \
+	   if test "$(word $(x),$(TYPS))" = "svn"; then \
+	      echo "--> cd $(top_builddir)/src/@TARGET_GCC_VER@/"; \
+	      cd $(top_builddir)/src/@TARGET_GCC_VER@/; \
+	      svn co $(word $(x),$(VCURLS)) > /dev/null 2>&1 || exit 1; \
+	      cd -; \
+	   fi;      \
+	fi;         \
 	)
 
 compile:
@@ -119,3 +123,14 @@ compile:
 clean-local:
 	@echo "Cleaning $(top_builddir)/src/@TARGET_GCC_VER@"
 	rm -rf $(top_builddir)/src/@TARGET_GCC_VER@
+
+
+# case $(word $(x),$(TYPS)) in				       \
+# "svn")						       \
+# svn co "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
+# ;;							       \
+# "git")						       \
+# git clone --depth=1 "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
+# ;;									     \
+# esac									     \
+#
