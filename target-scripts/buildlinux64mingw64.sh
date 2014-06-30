@@ -15,6 +15,3 @@ export CRT_CONFIG="--disable-lib32 --enable-lib64"
 
 export SHORT_NAME=mingw64
 export LONG_NAME=linux64mingw64
-
-# call main build script
-. ./scripts/buildcrossfromnative.sh

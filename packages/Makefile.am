@@ -34,9 +34,6 @@ URLS = http://ftp.gnu.org/pub/gnu/libiconv                                     \
 	http://ftp.gnu.org/gnu/make                                  \
 	http://isl.gforge.inria.fr
 
-#http://sourceforge.net/projects/expat/files/expat/2.1.0/expat-2.1.0.tar.gz
-
-
 ### dependency, download by vcs ###
 VCSS = ppl binutils gdb mingw-w64 gcc LLVM LLVM/tools/clang
 
@@ -105,32 +102,34 @@ vc:
 	   if test "$(word $(x),$(TYPS))" = "git"; then            \
 	      echo "--> cd $(top_builddir)/src/@TARGET_GCC_VER@/"; \
 	      cd $(top_builddir)/src/@TARGET_GCC_VER@/;            \
-	      git clone --depth=1 $(word $(x),$(VCURLS)) > /dev/null 2>&1 || exit 1; \
+	      git clone --depth=1 $(word $(x),$(VCURLS)) || exit 1; \
 	      cd -; \
 	   fi;      \
 	   if test "$(word $(x),$(TYPS))" = "svn"; then \
 	      echo "--> cd $(top_builddir)/src/@TARGET_GCC_VER@/"; \
 	      cd $(top_builddir)/src/@TARGET_GCC_VER@/; \
-	      svn co $(word $(x),$(VCURLS)) > /dev/null 2>&1 || exit 1; \
+	      svn co $(word $(x),$(VCURLS)) $(word $(x),$(VCSS)) || exit 1; \
 	      cd -; \
 	   fi;      \
 	fi;         \
 	)
 
 compile:
-	@echo "Finish!"
+	echo "Building linux 64-bit to Windows 32-bit cross-compiler"
+	cd $(top_builddir)/target-scripts
+	sh $(top_builddir)/target-scripts/buildlinux64mingw32.sh || exit 1
+	cd -
+	cd $(top_builddir)/scripts
+	sh $(top_builddir)/scripts/buildcrossfromnative.sh || exit 1
+	cd -
+	echo "Building linux 64-bit to Windows 64-bit cross-compiler"
+	cd $(top_builddir)/target-scripts
+	sh $(top_builddir)/target-scripts/buildlinux64mingw64.sh || exit 1
+	cd -
+	cd $(top_builddir)/scripts
+	sh $(top_builddir)/scripts/buildcrossfromnative.sh || exit 1
+	cd -
 
 clean-local:
 	@echo "Cleaning $(top_builddir)/src/@TARGET_GCC_VER@"
 	rm -rf $(top_builddir)/src/@TARGET_GCC_VER@
-
-
-# case $(word $(x),$(TYPS)) in				       \
-# "svn")						       \
-# svn co "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
-# ;;							       \
-# "git")						       \
-# git clone --depth=1 "$(word $(x),$(VCURLS))" . > /dev/null 2>&1 || exit 1 \
-# ;;									     \
-# esac									     \
-#

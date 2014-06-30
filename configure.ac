@@ -3,6 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([MinGW-w64-build-scripts], [1.0.0], [newserver002@gmail.com])
+AC_CANONICAL_TARGET
 AM_INIT_AUTOMAKE([foreign])
 
 # Checks for programs.
